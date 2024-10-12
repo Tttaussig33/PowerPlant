@@ -10,6 +10,8 @@ public class PlayerControl : MonoBehaviour
     //public Transform firePoint; 
     private GameObject currentLaser;
     public float laserSpeed = 10f;
+    public float fireRate = 0.5f;  
+    private float nextFireTime = 0f;
 
     float speedX, speedY;
     Rigidbody2D rb;
@@ -30,9 +32,10 @@ public class PlayerControl : MonoBehaviour
         rb.velocity = new Vector2(speedX, speedY);
 
         //laser
-        if (Input.GetButtonDown("Fire1")) 
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime) 
         {
             FireLaser();
+            nextFireTime = Time.time + fireRate; // Set the next time the player can fire
         }
     }
     void FireLaser()
