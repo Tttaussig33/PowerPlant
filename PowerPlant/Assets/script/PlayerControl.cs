@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     public float laserSpeed = 10f;
     public float fireRate = 0.5f;  
     private float nextFireTime = 0f;
+    public AudioClip _audioClip;
 
     float speedX, speedY;
     Rigidbody2D rb;
@@ -40,6 +41,7 @@ public class PlayerControl : MonoBehaviour
     }
     void FireLaser()
     {
+        AudioSource.PlayClipAtPoint(_audioClip, transform.position);
         //finds mouse position
         Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0; 

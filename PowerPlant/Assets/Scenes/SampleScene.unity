@@ -494,6 +494,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 266781660050001893, guid: 38c8bd57128514060b7fbe39f119b8ac, type: 3}
   laserSpeed: 10
   fireRate: 0.5
+  _audioClip: {fileID: 8300000, guid: b98890c3eeea84e3882a79778731d380, type: 3}
 --- !u!212 &1888439270
 SpriteRenderer:
   m_ObjectHideFlags: 0
