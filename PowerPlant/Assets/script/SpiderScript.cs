@@ -24,9 +24,7 @@ public class SpiderScript : MonoBehaviour
     {
         if (target)
         {
-            // Calculate the direction to the player
             Vector2 direction = (target.position - transform.position).normalized;
-            // Update the velocity to move towards the player
             rb.velocity = direction * speed;
         }
     }
@@ -42,11 +40,14 @@ public class SpiderScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-        Debug.Log("Spider hit!");
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        Destroy(collision.gameObject);
+         if (collision.gameObject.CompareTag("laser"))
+         {
+            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+            Debug.Log("Spider hit!");
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(collision.gameObject);
+         }
 
     }
 }
