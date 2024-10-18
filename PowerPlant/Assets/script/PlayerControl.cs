@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     public float fireRate = 0.5f;  
     private float nextFireTime = 0f;
     public AudioClip _audioClip;
+    private HealthManager healthManager;
 
     float speedX, speedY;
     Rigidbody2D rb;
@@ -23,6 +24,8 @@ public class PlayerControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         mainCam = Camera.main;
+        healthManager = FindObjectOfType<HealthManager>();
+
     }
 
     void Update()
@@ -63,6 +66,24 @@ public class PlayerControl : MonoBehaviour
         laserRb.velocity = Vector2.right * laserSpeed; 
         Destroy(currentLaser, 3f);
         */
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spider"))
+         {
+            Debug.Log("Player hit!");
+            if (healthManager != null)
+            {
+                healthManager.TakeDamage(20); // Use the instance of HealthManager to take damage
+            }
+            else
+            {
+                Debug.LogError("HealthManager not found!");
+
+            }
+
+         }
+
     }
     
 }
