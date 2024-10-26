@@ -11,7 +11,8 @@ public class Plant : MonoBehaviour
     public float changeDistance = 3f; // Max distance for the sprite to change
     public Sprite timeLimitSprite;  // Sprite to switch to after 10 seconds
     public TMP_Text plantText;
-    public int plantsNum = 0;
+    public static int plantsNum = 0;
+    
 
     private SpriteRenderer spriteRenderer;
     private bool spriteChangedByKey = false;

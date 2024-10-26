@@ -74,7 +74,21 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player hit!");
             if (healthManager != null)
             {
-                healthManager.TakeDamage(20); // Use the instance of HealthManager to take damage
+                healthManager.TakeDamage(15); // Use the instance of HealthManager to take damage
+            }
+            else
+            {
+                Debug.LogError("HealthManager not found!");
+
+            }
+
+         }
+        if (collision.gameObject.CompareTag("Beetle"))
+         {
+            Debug.Log("Player hit by beetle!");
+            if (healthManager != null)
+            {
+                healthManager.TakeDamage(25); // Use the instance of HealthManager to take damage
             }
             else
             {

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderScript : MonoBehaviour
+public class Beetle : MonoBehaviour
 {
     public Transform target;
     public float speed = 3f;
     private Rigidbody2D rb;
     public AudioClip _audioClip;
     private bool isDestroyed = false; 
+    private int hitCounter = 3;
     
     public delegate void DestroyedAction();
     public event DestroyedAction OnDestroyed;
@@ -46,17 +47,22 @@ public class SpiderScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-         if (collision.gameObject.CompareTag("laser"))
-         {
-            isDestroyed = true;
-            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-            Debug.Log("Spider hit!");
-            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            //gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            OnDestroyed?.Invoke();
-            Destroy(collision.gameObject);
-            Destroy(gameObject); 
-            //return; 
+         if (collision.gameObject.CompareTag("laser")){
+         if (hitCounter==0)
+            {
+                isDestroyed = true;
+                AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+                Debug.Log("Spider hit!");
+                //gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                //gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                OnDestroyed?.Invoke();
+                Destroy(collision.gameObject);
+                Destroy(gameObject); 
+                //return; 
+            }
+         else    {
+            hitCounter = hitCounter-1;
+            }
          }
 
     }

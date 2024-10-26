@@ -6,6 +6,7 @@ TagManager:
   tags:
   - laser
   - Spider
+  - Beetle
   layers:
   - Default
   - TransparentFX
