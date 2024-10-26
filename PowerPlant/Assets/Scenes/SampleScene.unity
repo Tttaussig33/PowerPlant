@@ -1979,7 +1979,7 @@ Transform:
   m_GameObject: {fileID: 1215175056}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.096024, y: 3.2416039, z: 0.08022308}
+  m_LocalPosition: {x: 32.8, y: -8.8, z: 0.08022308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3377,6 +3377,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: rocks1
       objectReference: {fileID: 0}
+    - target: {fileID: 2695652883045071059, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bfd9b56de7f7c4321917cfd7134cb089, type: 3}
+    - target: {fileID: 2695652883045071059, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695652883045071059, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695652883045071059, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620354933659773669, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620354933659773669, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620354933659773669, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620354933659773669, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357567345172993549, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357567345172993549, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8357567345172993549, guid: d764f372aca474c3fa7eb5e069267b47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.99
@@ -3487,9 +3527,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1083438490827747449, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a8380cd837121442eb429996834bbb59, type: 3}
+    - target: {fileID: 1083438490827747449, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_Color.b
+      value: 0.85564256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083438490827747449, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_Color.g
+      value: 0.85564256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083438490827747449, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277955961898709346, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277955961898709346, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277955961898709346, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6893726395659166259, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
       propertyPath: m_Name
       value: rocks2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569766727804486972, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569766727804486972, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7569766727804486972, guid: 9c2133b8e59e14bc8a4fdfacc85977fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3557,5 +3633,5 @@ SceneRoots:
   - {fileID: 5664645323033477136}
   - {fileID: 6551948632929177517}
   - {fileID: 9158399407612324524}
-  - {fileID: 1477559850}
   - {fileID: 1569931969}
+  - {fileID: 1477559850}

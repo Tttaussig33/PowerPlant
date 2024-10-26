@@ -9,7 +9,7 @@ public class Beetle : MonoBehaviour
     private Rigidbody2D rb;
     public AudioClip _audioClip;
     private bool isDestroyed = false; 
-    private int hitCounter = 3;
+    private int hitCounter = 2;
     
     public delegate void DestroyedAction();
     public event DestroyedAction OnDestroyed;
