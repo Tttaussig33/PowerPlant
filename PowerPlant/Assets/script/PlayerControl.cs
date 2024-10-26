@@ -7,7 +7,6 @@ public class PlayerControl : MonoBehaviour
     private Camera mainCam;
     public float movSpeed;
     public GameObject laserPrefab;  
-    //public Transform firePoint; 
     private GameObject currentLaser;
     public float laserSpeed = 10f;
     public float fireRate = 0.5f;  
@@ -17,8 +16,6 @@ public class PlayerControl : MonoBehaviour
 
     float speedX, speedY;
     Rigidbody2D rb;
-    //Vector2 moveDirection;
-    //Vector2 mousePosition;
 
     void Start()
     {
@@ -54,19 +51,14 @@ public class PlayerControl : MonoBehaviour
         GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
 
         Rigidbody2D laserRb = laser.GetComponent<Rigidbody2D>();
-        laserRb.velocity = direction * laserSpeed;
+        laserRb.AddForce(direction * laserSpeed, ForceMode2D.Impulse); //addforce
+        //laserRb.velocity = direction * laserSpeed;
 
         Destroy(laser, 3f);
-
-        /*
-        Quaternion customRotation = Quaternion.Euler(0, 0, 0); //start point
-        currentLaser = Instantiate(laserPrefab, transform.position, customRotation); //creates laser
-        currentLaser.transform.parent = this.transform;
-        Rigidbody2D laserRb = currentLaser.GetComponent<Rigidbody2D>();
-        laserRb.velocity = Vector2.right * laserSpeed; 
-        Destroy(currentLaser, 3f);
-        */
     }
+
+    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Spider"))
@@ -99,5 +91,32 @@ public class PlayerControl : MonoBehaviour
          }
 
     }
+    public void IncreaseLaserSpeed(float speedBoost, float duration)
+   {
+       // Calculate new fire rate
+       float newFireRate = fireRate - speedBoost;
+
+
+       // Clamp the fire rate to a minimum value to avoid negative or zero
+       newFireRate = Mathf.Max(newFireRate, 0.1f);
+
+
+       // Start a coroutine to reset the fire rate after the duration
+       StartCoroutine(TemporaryLaserSpeedBoost(newFireRate, duration));
+   }
+
+
+   private IEnumerator TemporaryLaserSpeedBoost(float newFireRate, float duration)
+   {
+       float originalFireRate = fireRate; // Store the original fire rate
+       fireRate = newFireRate; // Set the new fire rate
+
+
+       yield return new WaitForSeconds(duration); // Wait for the duration
+
+
+       fireRate = originalFireRate; // Reset to the original fire rate
+   }
+
     
 }
