@@ -10,6 +10,7 @@ public class Beetle : MonoBehaviour
     public AudioClip _audioClip;
     private bool isDestroyed = false; 
     private int hitCounter = 2;
+    private ScoreManager scoreManager;
     
     public delegate void DestroyedAction();
     public event DestroyedAction OnDestroyed;
@@ -18,6 +19,8 @@ public class Beetle : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         GetTarget(); // Get the target immediately on start
+        scoreManager = FindObjectOfType<ScoreManager>();
+
     }
 
     void Update()
@@ -53,8 +56,7 @@ public class Beetle : MonoBehaviour
                 isDestroyed = true;
                 AudioSource.PlayClipAtPoint(_audioClip, transform.position);
                 Debug.Log("Spider hit!");
-                //gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                //gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                scoreManager?.AddScore(1);
                 OnDestroyed?.Invoke();
                 Destroy(collision.gameObject);
                 Destroy(gameObject); 

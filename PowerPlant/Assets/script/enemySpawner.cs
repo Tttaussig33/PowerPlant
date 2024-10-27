@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnRate = 6f;
+    [SerializeField] private float spawnRate = 10f;
     [SerializeField] private float minSpawnRate = 3f;
-    [SerializeField] private int maxSpiders = 7; // Max number of spiders allowed in the scene
+    [SerializeField] private int maxSpiders = 10; // Max number of spiders allowed in the scene
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private bool canSpawn = true;
 
@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update(){
         if (Plant.plantsNum >=3){
-            maxSpiders=10;
+            maxSpiders=16;
         }
     }
 }

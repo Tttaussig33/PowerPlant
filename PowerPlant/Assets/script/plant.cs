@@ -12,7 +12,8 @@ public class Plant : MonoBehaviour
     public Sprite timeLimitSprite;  // Sprite to switch to after 10 seconds
     public TMP_Text plantText;
     public static int plantsNum = 0;
-    
+    public AudioClip _audioClip;
+    public AudioClip _audioClip2;
 
     private SpriteRenderer spriteRenderer;
     private bool spriteChangedByKey = false;
@@ -40,6 +41,7 @@ public class Plant : MonoBehaviour
                 // Change to the alternate sprite
                 spriteRenderer.sprite = planting;
                 spriteChangedByKey = true; // Prevent further key-based changes
+                AudioSource.PlayClipAtPoint(_audioClip, transform.position);
 
                 // Start the countdown coroutine for 10 seconds
                 StartCoroutine(ChangeSpriteAfterTime(10f));
@@ -58,5 +60,12 @@ public class Plant : MonoBehaviour
         Debug.Log("Sprite changed to timeLimitSprite after 10 seconds");
         plantsNum = plantsNum+1;
         plantText.text = "Powerplants: " + plantsNum.ToString("F0");
+        AudioSource.PlayClipAtPoint(_audioClip2, transform.position);
+        if(plantsNum == 5)
+        {
+            Debug.Log("game end");
+
+           // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }
     }
 }
