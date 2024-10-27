@@ -1,7 +1,9 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using TMPro;  // For TextMeshPro
+using UnityEngine.SceneManagement; // For SceneManager
 
 public class Plant : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class Plant : MonoBehaviour
     public static int plantsNum = 0;
     public AudioClip _audioClip;
     public AudioClip _audioClip2;
+    public GameObject GameWinPanel;
 
     private SpriteRenderer spriteRenderer;
     private bool spriteChangedByKey = false;
@@ -25,6 +28,10 @@ public class Plant : MonoBehaviour
 
         // Set the initial sprite
         spriteRenderer.sprite = patch;
+        if (GameWinPanel != null)
+       {
+           GameWinPanel.SetActive(false); // Ensure GameOverPanel is hidden at the start
+       }
     }
 
     void Update()
@@ -64,8 +71,20 @@ public class Plant : MonoBehaviour
         if(plantsNum == 5)
         {
             Debug.Log("game end");
-
+            TriggerGameWin();
            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         }
     }
+    void TriggerGameWin()
+   {
+       // Show the game over panel
+       if (GameWinPanel != null)
+       {
+           GameWinPanel.SetActive(true);
+       }
+      
+       // Freeze game time
+       Time.timeScale = 0f;
+   }
+   
 }

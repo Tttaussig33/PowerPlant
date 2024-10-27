@@ -5,7 +5,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
    public TMP_Text scoreText;  // Reference to the TextMeshPro UI element
-   private int score = 0;      // Player's score
+   public static int score = 0;      // Player's score
 
 
    void Start()

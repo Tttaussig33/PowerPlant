@@ -87,6 +87,8 @@ public class HealthManager : MonoBehaviour
        // Reset health
        healthAmount = 100f; // Reset health to initial value
        UpdateHealthUI(); // Update the UI to reflect the initial health
+       Plant.plantsNum=0;
+       ScoreManager.score=0;
 
 
        // Hide GameOverPanel
