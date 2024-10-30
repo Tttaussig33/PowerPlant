@@ -5,7 +5,8 @@ using UnityEngine;
 public class healthbox : MonoBehaviour
 {
     private HealthManager healthManager;
-    
+    public AudioClip _audioClip;
+
     void Start()
     {
         // Find and assign the HealthManager in the scene
@@ -25,6 +26,7 @@ public class healthbox : MonoBehaviour
             Debug.Log("health+");
             Destroy(gameObject); 
             healthManager.Heal(20);
+            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
             //return; 
          }
 

@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     public float fireRate = 0.5f;  
     private float nextFireTime = 0f;
     public AudioClip _audioClip;
+    public AudioClip _audioClip2;
     private HealthManager healthManager;
 
     float speedX, speedY;
@@ -67,6 +68,8 @@ public class PlayerControl : MonoBehaviour
             if (healthManager != null)
             {
                 healthManager.TakeDamage(15); // Use the instance of HealthManager to take damage
+                AudioSource.PlayClipAtPoint(_audioClip2, transform.position);
+
             }
             else
             {
@@ -81,6 +84,7 @@ public class PlayerControl : MonoBehaviour
             if (healthManager != null)
             {
                 healthManager.TakeDamage(25); // Use the instance of HealthManager to take damage
+                AudioSource.PlayClipAtPoint(_audioClip2, transform.position);
             }
             else
             {
@@ -91,31 +95,27 @@ public class PlayerControl : MonoBehaviour
          }
 
     }
-    public void IncreaseLaserSpeed(float speedBoost, float duration)
+    public void IncreaseLaserSpeed(float speedBoost, float duration) //powerup method 
    {
-       // Calculate new fire rate
-       float newFireRate = fireRate - speedBoost;
+       float newFireRate = fireRate - speedBoost; 
 
-
-       // Clamp the fire rate to a minimum value to avoid negative or zero
        newFireRate = Mathf.Max(newFireRate, 0.1f);
 
 
-       // Start a coroutine to reset the fire rate after the duration
        StartCoroutine(TemporaryLaserSpeedBoost(newFireRate, duration));
    }
 
 
    private IEnumerator TemporaryLaserSpeedBoost(float newFireRate, float duration)
    {
-       float originalFireRate = fireRate; // Store the original fire rate
-       fireRate = newFireRate; // Set the new fire rate
+       float originalFireRate = fireRate; 
+       fireRate = newFireRate; 
 
 
-       yield return new WaitForSeconds(duration); // Wait for the duration
+       yield return new WaitForSeconds(duration); 
 
 
-       fireRate = originalFireRate; // Reset to the original fire rate
+       fireRate = originalFireRate; 
    }
 
     

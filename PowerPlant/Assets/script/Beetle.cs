@@ -50,6 +50,12 @@ public class Beetle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("PowerUp"))
+        {
+            // Ignore collisions with obstacles
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            return;
+        }
          if (collision.gameObject.CompareTag("laser")){
          if (hitCounter==0)
             {
@@ -63,6 +69,7 @@ public class Beetle : MonoBehaviour
                 //return; 
             }
          else    {
+            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
             hitCounter = hitCounter-1;
             }
          }

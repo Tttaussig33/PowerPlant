@@ -145,3 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedBoost: 2
   duration: 9
+  _audioClip: {fileID: 8300000, guid: 9e085ca104ea544dc93b783fa258ddda, type: 3}

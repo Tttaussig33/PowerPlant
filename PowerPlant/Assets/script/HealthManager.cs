@@ -12,6 +12,7 @@ public class HealthManager : MonoBehaviour
    public TMP_Text healthText; 
    public float healthAmount = 100f;
    public GameObject gameOverPanel; // Reference to the GameOverPanel UI
+   public AudioClip _audioClip;
 
 
    void Start()
@@ -28,11 +29,14 @@ public class HealthManager : MonoBehaviour
    {
        if (healthAmount <= 0 && !gameOverPanel.activeSelf) // Check for game over only if panel is not already active
        {
+            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
            TriggerGameOver();
+           //Debug.LogError("game over called");
+
        }
 
 
-       // Test damage and healing inputs
+       /* Test damage and healing inputs
        if (Input.GetKeyDown(KeyCode.Return))
        {
            TakeDamage(20);
@@ -43,6 +47,7 @@ public class HealthManager : MonoBehaviour
        {
            Heal(5);
        }
+       */
    }
 
 
@@ -71,6 +76,8 @@ public class HealthManager : MonoBehaviour
 
    void TriggerGameOver()
    {
+        //AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+        //Debug.LogError("game over method");
        // Show the game over panel
        if (gameOverPanel != null)
        {
