@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnRate = 10f;
-    [SerializeField] private float minSpawnRate = 3f;
-    [SerializeField] private int maxSpiders = 6; // Max number of spiders allowed in the scene
+    [SerializeField] private float spawnRate = 16f;
+    [SerializeField] private float minSpawnRate = 12f;
+    [SerializeField] private int maxSpiders = 4; // Max number of spiders allowed in the scene
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private bool canSpawn = true;
 
@@ -26,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
             // Check if the current number of spiders is below the maximum
             if (currentSpiders < maxSpiders)
             {
+                Debug.Log(currentSpiders);
+                Debug.Log(maxSpiders);
                 int rand = Random.Range(0, enemyPrefabs.Length);
                 GameObject enemyToSpawn = enemyPrefabs[rand];
                 GameObject spawnedEnemy = Instantiate(enemyToSpawn, transform.position, Quaternion.identity);

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 798051652183910189}
   - component: {fileID: 6263335044853923674}
   - component: {fileID: 8879351455226705887}
+  - component: {fileID: -8865452369184719007}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -136,6 +137,8 @@ MonoBehaviour:
   laserSpeed: 20
   fireRate: 0.5
   _audioClip: {fileID: 8300000, guid: b98890c3eeea84e3882a79778731d380, type: 3}
+  _audioClip2: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!50 &6263335044853923674
 Rigidbody2D:
   serializedVersion: 4
@@ -208,3 +211,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17, y: 0.32}
   m_EdgeRadius: 0
+--- !u!95 &-8865452369184719007
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764792920028749811}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

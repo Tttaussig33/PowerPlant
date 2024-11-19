@@ -8,6 +8,8 @@ TagManager:
   - Spider
   - Beetle
   - PowerUp
+  - spiderBoss
+  - speed
   layers:
   - Default
   - TransparentFX

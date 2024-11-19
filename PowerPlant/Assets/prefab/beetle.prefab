@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 2.5
+  speed: 3
   _audioClip: {fileID: 8300000, guid: 6d8aef942fb594191b1a7dcff5ffe59e, type: 3}
 --- !u!114 &2653178327692374434
 MonoBehaviour:

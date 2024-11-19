@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     public AudioClip _audioClip;
     public AudioClip _audioClip2;
     private HealthManager healthManager;
+    public Animator animator;
 
     float speedX, speedY;
     Rigidbody2D rb;
@@ -32,6 +33,9 @@ public class PlayerControl : MonoBehaviour
         speedX = Input.GetAxisRaw("Horizontal") * movSpeed;
         speedY = Input.GetAxisRaw("Vertical") * movSpeed;
         rb.velocity = new Vector2(speedX, speedY);
+        
+        bool isMoving = speedX != 0 || speedY != 0;
+        animator.SetBool("isMoving", isMoving);
 
         //laser
         if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime) 
@@ -40,9 +44,13 @@ public class PlayerControl : MonoBehaviour
             nextFireTime = Time.time + fireRate; // Set the next time the player can fire
         }
     }
+    private void FixedUpdate(){
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+    }
     void FireLaser()
     {
-        AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+        float volume = 0.6f;
+        AudioSource.PlayClipAtPoint(_audioClip, transform.position, volume);
         //finds mouse position
         Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0; 
@@ -67,7 +75,7 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player hit!");
             if (healthManager != null)
             {
-                healthManager.TakeDamage(15); // Use the instance of HealthManager to take damage
+                healthManager.TakeDamage(10); // Use the instance of HealthManager to take damage
                 AudioSource.PlayClipAtPoint(_audioClip2, transform.position);
 
             }
@@ -83,7 +91,7 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player hit by beetle!");
             if (healthManager != null)
             {
-                healthManager.TakeDamage(25); // Use the instance of HealthManager to take damage
+                healthManager.TakeDamage(15); // Use the instance of HealthManager to take damage
                 AudioSource.PlayClipAtPoint(_audioClip2, transform.position);
             }
             else
@@ -92,6 +100,26 @@ public class PlayerControl : MonoBehaviour
 
             }
 
+         }
+         if (collision.gameObject.CompareTag("spiderBoss"))
+         {
+            Debug.Log("Player hit by boss!");
+            if (healthManager != null)
+            {
+                healthManager.TakeDamage(45); // Use the instance of HealthManager to take damage
+                AudioSource.PlayClipAtPoint(_audioClip2, transform.position);
+            }
+            else
+            {
+                Debug.LogError("HealthManager not found!");
+
+            }
+
+         }
+         if (collision.gameObject.CompareTag("speed"))
+         {
+            Debug.Log("Player hit speed boost!");
+            IncreaseSpeed(1.88f, 3f);
          }
 
     }
@@ -118,5 +146,18 @@ public class PlayerControl : MonoBehaviour
        fireRate = originalFireRate; 
    }
 
-    
+    private void IncreaseSpeed(float speedMultiplier, float duration)
+    {
+        StartCoroutine(TemporarySpeedBoost(speedMultiplier, duration));
+    }
+
+    private IEnumerator TemporarySpeedBoost(float speedMultiplier, float duration)
+    {
+        float originalSpeed = movSpeed; // Store the original speed
+        movSpeed *= speedMultiplier;   // Increase the speed
+
+        yield return new WaitForSeconds(duration); // Wait for the duration
+
+        movSpeed = originalSpeed; // Reset to the original speed
+    }
 }
