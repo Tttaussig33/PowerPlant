@@ -13,12 +13,18 @@ public class SpiderScript : MonoBehaviour
     private ScoreManager scoreManager;
     public delegate void DestroyedAction();
     public event DestroyedAction OnDestroyed;
+    public Animator animator;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         GetTarget(); // Get the target immediately on start
         scoreManager = FindObjectOfType<ScoreManager>();
+        
+        if (animator == null)
+        {
+            Debug.LogError("Animator not assigned in SpiderScript.");
+        }
 
     }
 
@@ -26,6 +32,8 @@ public class SpiderScript : MonoBehaviour
     {
         if (isDestroyed) return; 
         if (!target) GetTarget();
+
+
     }
 
     private void FixedUpdate()
@@ -35,6 +43,8 @@ public class SpiderScript : MonoBehaviour
         {
             Vector2 direction = (target.position - transform.position).normalized;
             rb.velocity = direction * speed;
+            
+
         }
     }
 
@@ -55,6 +65,12 @@ public class SpiderScript : MonoBehaviour
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
             return;
         }
+        if (collision.gameObject.CompareTag("speed"))
+        {
+            // Ignore collisions with obstacles
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            return;
+        }
          if (collision.gameObject.CompareTag("laser"))
          {
             isDestroyed = true;
@@ -65,7 +81,6 @@ public class SpiderScript : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject); 
             
-            //return; 
          }
 
     }

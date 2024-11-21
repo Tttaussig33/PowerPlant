@@ -22,12 +22,10 @@ public class healthbox : MonoBehaviour
     {
          if (collision.gameObject.CompareTag("Player"))
          {
-            //AudioSource.PlayClipAtPoint(_audioClip, transform.position);
             Debug.Log("health+");
             Destroy(gameObject); 
             healthManager.Heal(20);
             AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-            //return; 
          }
 
     }

@@ -56,6 +56,12 @@ public class Beetle : MonoBehaviour
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
             return;
         }
+        if (collision.gameObject.CompareTag("speed"))
+        {
+            // Ignore collisions with obstacles
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            return;
+        }
          if (collision.gameObject.CompareTag("laser")){
          if (hitCounter==0)
             {
@@ -66,11 +72,11 @@ public class Beetle : MonoBehaviour
                 OnDestroyed?.Invoke();
                 Destroy(collision.gameObject);
                 Destroy(gameObject); 
-                //return; 
             }
          else    {
-            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-            hitCounter = hitCounter-1;
+                AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+                hitCounter = hitCounter-1;
+                Destroy(collision.gameObject);
             }
          }
 
