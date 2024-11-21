@@ -7,7 +7,8 @@ public class SpiderBoss : MonoBehaviour
     public Transform target;
     public float speed = 3f;
     private Rigidbody2D rb;
-    public AudioClip _audioClip;    
+    public AudioClip _audioClip;  
+    public AudioClip _audioWeb;   
     
     private bool isDestroyed = false; 
     private ScoreManager scoreManager;
@@ -17,7 +18,9 @@ public class SpiderBoss : MonoBehaviour
     private int hitCounter = 15;
 
     public GameObject GameWinPanel;
-    
+    public GameObject webPrefab; // Add the web prefab
+    public float webSpeed = 5f; // Speed of the web
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,14 +37,14 @@ public class SpiderBoss : MonoBehaviour
            GameWinPanel.SetActive(false); // Ensure GameOverPanel is hidden at the start
         }
 
+        // Start the web shooting coroutine
+        StartCoroutine(ShootWeb());
     }
 
     void Update()
     {
         if (isDestroyed) return; 
         if (!target) GetTarget();
-
-
     }
 
     private void FixedUpdate()
@@ -51,9 +54,6 @@ public class SpiderBoss : MonoBehaviour
         {
             Vector2 direction = (target.position - transform.position).normalized;
             rb.velocity = direction * speed;
-            //Debug.Log(rb.velocity.magnitude);
-            //Debug.Log("Direction: " + direction + " | Velocity: " + rb.velocity);
-
         }
     }
 
@@ -74,8 +74,9 @@ public class SpiderBoss : MonoBehaviour
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
             return;
         }
-         if (collision.gameObject.CompareTag("laser")){
-            if (hitCounter==0)
+        if (collision.gameObject.CompareTag("laser"))
+        {
+            if (hitCounter == 0)
             {
                 isDestroyed = true;
                 AudioSource.PlayClipAtPoint(_audioClip, transform.position);
@@ -86,23 +87,51 @@ public class SpiderBoss : MonoBehaviour
                 Destroy(gameObject); 
                 TriggerGameWin();
             }
-            else    {
+            else
+            {
                 AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-                hitCounter = hitCounter-1;
+                hitCounter = hitCounter - 1;
                 Destroy(collision.gameObject);
             }
-         }
-
+        }
     }
-     void TriggerGameWin()
-   {
-       // Show the game over panel
-       if (GameWinPanel != null)
-       {
-           GameWinPanel.SetActive(true);
-       }
+
+    private void TriggerGameWin()
+    {
+        // Show the game over panel
+        if (GameWinPanel != null)
+        {
+            GameWinPanel.SetActive(true);
+        }
       
-       // Freeze game time
-       Time.timeScale = 0f;
-   }
+        // Freeze game time
+        Time.timeScale = 0f;
+    }
+
+    private IEnumerator ShootWeb()
+    {
+        while (!isDestroyed)
+        {
+            yield return new WaitForSeconds(1.5f); // Shoot web every 4 seconds
+
+            if (webPrefab != null && target != null)
+            {
+                // Instantiate the web
+                GameObject web = Instantiate(webPrefab, transform.position, Quaternion.identity);
+                AudioSource.PlayClipAtPoint(_audioWeb, transform.position);
+
+                // Calculate direction toward the target
+                Vector2 direction = (target.position - transform.position).normalized;
+
+                // Apply velocity to the web
+                Rigidbody2D webRb = web.GetComponent<Rigidbody2D>();
+                if (webRb != null)
+                {
+                    webRb.velocity = direction * webSpeed;
+                    Destroy(web, 3f);
+                }
+
+            }
+        }
+    }
 }

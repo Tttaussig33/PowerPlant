@@ -43,8 +43,7 @@ public class SpiderScript : MonoBehaviour
         {
             Vector2 direction = (target.position - transform.position).normalized;
             rb.velocity = direction * speed;
-            //Debug.Log(rb.velocity.magnitude);
-            //Debug.Log("Direction: " + direction + " | Velocity: " + rb.velocity);
+            
 
         }
     }

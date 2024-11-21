@@ -8,18 +8,22 @@ public class Plant : MonoBehaviour
     public Sprite patch;            // Drag your default sprite here
     public Sprite planting;         // Drag your alternate sprite here
     public Transform player;        // Reference to the player's Transform
-    public float changeDistance = 5f; // Max distance for the sprite to change
+    public float changeDistance = 7f; // Max distance for the sprite to change
     public Sprite timeLimitSprite;  // Sprite to switch to after 10 seconds
     public TMP_Text plantText;
     public TMP_Text countdownText;  // Text to display the countdown timer
+    public TMP_Text bossText;
     public static int plantsNum = 0;
-    public AudioClip _audioClip;
-    public AudioClip _audioClip2;
+    public AudioClip _audioClip;    // Clip for planting sound
+    public AudioClip _audioClip2;   // Clip for completion sound
+    public AudioClip normalMusic;   // Background music for normal gameplay
+    public AudioClip bossMusic;     // Background music for boss battles
     public GameObject GameWinPanel;
-    public GameObject SpiderBoss; 
+    public GameObject SpiderBoss;
 
     private SpriteRenderer spriteRenderer;
     private bool spriteChangedByKey = false;
+    private AudioSource musicSource; // Reference to the Music GameObject's AudioSource
 
     void Start()
     {
@@ -43,6 +47,28 @@ public class Plant : MonoBehaviour
         if (countdownText != null)
         {
             countdownText.gameObject.SetActive(false);
+        }
+
+        if (bossText != null)
+        {
+            bossText.gameObject.SetActive(false);
+        }
+
+        // Find the Music GameObject and get its AudioSource
+        GameObject musicObject = GameObject.Find("Music");
+        if (musicObject != null)
+        {
+            musicSource = musicObject.GetComponent<AudioSource>();
+            if (musicSource != null && normalMusic != null)
+            {
+                musicSource.clip = normalMusic;
+                musicSource.loop = true;
+                musicSource.Play();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Music GameObject not found in the scene.");
         }
     }
 
@@ -118,10 +144,18 @@ public class Plant : MonoBehaviour
 
         if (plantsNum == 5)
         {
-            Debug.Log("spawn boss");
+            Debug.Log("Spawn boss");
+            bossText.gameObject.SetActive(true);
             if (SpiderBoss != null)
             {
                 SpiderBoss.SetActive(true);
+
+                // Change to boss music
+                if (musicSource != null && bossMusic != null)
+                {
+                    musicSource.clip = bossMusic;
+                    musicSource.Play();
+                }
             }
         }
     }

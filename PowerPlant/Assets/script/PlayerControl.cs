@@ -32,7 +32,8 @@ public class PlayerControl : MonoBehaviour
         
         speedX = Input.GetAxisRaw("Horizontal") * movSpeed;
         speedY = Input.GetAxisRaw("Vertical") * movSpeed;
-        rb.velocity = new Vector2(speedX, speedY);
+        
+        rb.velocity = Vector2.ClampMagnitude(new Vector2(speedX, speedY), movSpeed);
         
         bool isMoving = speedX != 0 || speedY != 0;
         animator.SetBool("isMoving", isMoving);
@@ -121,9 +122,13 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player hit speed boost!");
             IncreaseSpeed(1.88f, 3f);
          }
+        if (collision.gameObject.CompareTag("web"))
+        {
+            healthManager.TakeDamage(20);
+        }
 
     }
-    public void IncreaseLaserSpeed(float speedBoost, float duration) //powerup method 
+    public void IncreaseLaserSpeed(float speedBoost, float duration) //laser power up  
    {
        float newFireRate = fireRate - speedBoost; 
 
@@ -146,7 +151,7 @@ public class PlayerControl : MonoBehaviour
        fireRate = originalFireRate; 
    }
 
-    private void IncreaseSpeed(float speedMultiplier, float duration)
+    private void IncreaseSpeed(float speedMultiplier, float duration) //speed power up
     {
         StartCoroutine(TemporarySpeedBoost(speedMultiplier, duration));
     }
