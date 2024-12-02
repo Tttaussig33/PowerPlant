@@ -13,10 +13,20 @@ public class HealthManager : MonoBehaviour
    public float healthAmount = 100f;
    public GameObject gameOverPanel; // Reference to the GameOverPanel UI
    public AudioClip _audioClip;
+   public Animator animator; 
+   private PlayerControl playerControl;
+   private AudioSource deathSound;
+   public TMP_Text bossHealthText;
+    public TMP_Text bossText;
 
 
    void Start()
    {
+        GameObject player = GameObject.FindWithTag("Player");
+        playerControl = player.GetComponent<PlayerControl>();
+
+        deathSound = gameObject.AddComponent<AudioSource>();
+        deathSound.clip = _audioClip;
        UpdateHealthUI();
        if (gameOverPanel != null)
        {
@@ -29,26 +39,40 @@ public class HealthManager : MonoBehaviour
    {
        if (healthAmount <= 0 && !gameOverPanel.activeSelf) // Check for game over only if panel is not already active
        {
-            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-           TriggerGameOver();
-           //Debug.LogError("game over called");
+            deathSound.Play();
+            playerDeadMethod();
+            /*
+            AudioSource.PlayClipAtPoint(_audioClip, transform.position, 1.0f);
+            Debug.Log("Player health is zero");
+            animator.SetTrigger("Die");
+            if (playerControl != null)
+            {
+                playerControl.DisableMovement();
+                Debug.Log("playercontrols!=null");
+            }
+
+            StartCoroutine(DelayedGameOver());
+            */
 
        }
-
-
-       /* Test damage and healing inputs
-       if (Input.GetKeyDown(KeyCode.Return))
-       {
-           TakeDamage(20);
-       }
-
-
-       if (Input.GetKeyDown(KeyCode.Space))
-       {
-           Heal(5);
-       }
-       */
    }
+   private void playerDeadMethod()
+   {
+        Debug.Log("Player health is zero");
+            animator.SetTrigger("Die");
+            if (playerControl != null)
+            {
+                playerControl.DisableMovement();
+                Debug.Log("playercontrols!=null");
+            }
+
+            StartCoroutine(DelayedGameOver());
+   }
+   private IEnumerator DelayedGameOver()
+{
+    yield return new WaitForSeconds(2f); // Wait for 1 second
+    TriggerGameOver(); // Then trigger the game-over logic
+}
 
 
    public void TakeDamage(float damage)
@@ -79,6 +103,8 @@ public class HealthManager : MonoBehaviour
         //AudioSource.PlayClipAtPoint(_audioClip, transform.position);
         //Debug.LogError("game over method");
        // Show the game over panel
+       bossHealthText.gameObject.SetActive(false);
+       bossText.gameObject.SetActive(false);
        if (gameOverPanel != null)
        {
            gameOverPanel.SetActive(true);

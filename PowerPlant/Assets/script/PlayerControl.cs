@@ -13,8 +13,10 @@ public class PlayerControl : MonoBehaviour
     private float nextFireTime = 0f;
     public AudioClip _audioClip;
     public AudioClip _audioClip2;
+    public AudioClip _audioClip3;
     private HealthManager healthManager;
     public Animator animator;
+    private bool canMove = true;
 
     float speedX, speedY;
     Rigidbody2D rb;
@@ -30,6 +32,8 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         
+       if (!canMove) return; // Prevent movement if canMove is false
+
         speedX = Input.GetAxisRaw("Horizontal") * movSpeed;
         speedY = Input.GetAxisRaw("Vertical") * movSpeed;
         
@@ -38,16 +42,35 @@ public class PlayerControl : MonoBehaviour
         bool isMoving = speedX != 0 || speedY != 0;
         animator.SetBool("isMoving", isMoving);
 
-        //laser
+        // Laser firing
         if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime) 
         {
             FireLaser();
-            nextFireTime = Time.time + fireRate; // Set the next time the player can fire
+            nextFireTime = Time.time + fireRate;
         }
     }
+
+    public void DisableMovement()
+    {
+        /*
+        canMove = false;
+        rb.velocity = Vector2.zero; // Stop movement immediately
+        */
+        movSpeed = 0f;
+        rb.velocity = Vector2.zero;
+        animator.SetBool("isMoving", false); // Ensure idle animation
+        
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
     private void FixedUpdate(){
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
     }
+
     void FireLaser()
     {
         float volume = 0.6f;
@@ -124,16 +147,40 @@ public class PlayerControl : MonoBehaviour
          }
         if (collision.gameObject.CompareTag("web"))
         {
-            healthManager.TakeDamage(20);
+            healthManager.TakeDamage(3);
+            StartCoroutine(FreezePlayer(2f));
+            AudioSource.PlayClipAtPoint(_audioClip3, transform.position);
         }
 
     }
+
+    private IEnumerator FreezePlayer(float freezeDuration)
+    {
+        Debug.Log("Player frozen!");
+
+        // Store original movement speed
+        float originalSpeed = movSpeed;
+
+        // Stop movement
+        movSpeed = 0f;
+        rb.velocity = Vector2.zero; // Ensure the player doesn't slide
+
+        // Disable animations if needed
+        animator.SetBool("isMoving", false);
+
+        // Wait for freeze duration
+        yield return new WaitForSeconds(freezeDuration);
+
+        // Restore original movement speed
+        movSpeed = originalSpeed;
+        Debug.Log("Player unfrozen!");
+    }
+
     public void IncreaseLaserSpeed(float speedBoost, float duration) //laser power up  
    {
        float newFireRate = fireRate - speedBoost; 
 
        newFireRate = Mathf.Max(newFireRate, 0.1f);
-
 
        StartCoroutine(TemporaryLaserSpeedBoost(newFireRate, duration));
    }
