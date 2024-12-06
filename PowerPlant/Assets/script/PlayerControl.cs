@@ -145,19 +145,19 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player hit speed boost!");
             IncreaseSpeed(1.88f, 3f);
          }
-        if (collision.gameObject.CompareTag("web"))
-        {
+         if (collision.gameObject.CompareTag("web"))
+         {
+            animator.SetBool("isFrozen", true); 
             healthManager.TakeDamage(3);
             StartCoroutine(FreezePlayer(2f));
             AudioSource.PlayClipAtPoint(_audioClip3, transform.position);
-        }
+         }
 
     }
 
     private IEnumerator FreezePlayer(float freezeDuration)
     {
         Debug.Log("Player frozen!");
-
         // Store original movement speed
         float originalSpeed = movSpeed;
 
@@ -174,6 +174,7 @@ public class PlayerControl : MonoBehaviour
         // Restore original movement speed
         movSpeed = originalSpeed;
         Debug.Log("Player unfrozen!");
+        animator.SetBool("isFrozen", false); 
     }
 
     public void IncreaseLaserSpeed(float speedBoost, float duration) //laser power up  
@@ -188,6 +189,7 @@ public class PlayerControl : MonoBehaviour
 
    private IEnumerator TemporaryLaserSpeedBoost(float newFireRate, float duration)
    {
+        animator.SetBool("WeaponBoosted", true); 
        float originalFireRate = fireRate; 
        fireRate = newFireRate; 
 
@@ -196,6 +198,7 @@ public class PlayerControl : MonoBehaviour
 
 
        fireRate = originalFireRate; 
+       animator.SetBool("WeaponBoosted", false);
    }
 
     private void IncreaseSpeed(float speedMultiplier, float duration) //speed power up

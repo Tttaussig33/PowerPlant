@@ -127,7 +127,7 @@ public class SpiderBoss : MonoBehaviour
     {
         while (!isDestroyed)
         {
-            yield return new WaitForSeconds(1.5f); // Shoot web every 4 seconds
+            yield return new WaitForSeconds(4f); // Shoot web every 4 seconds
 
             if (webPrefab != null && target != null)
             {
@@ -143,7 +143,7 @@ public class SpiderBoss : MonoBehaviour
                 if (webRb != null)
                 {
                     webRb.velocity = direction * webSpeed;
-                    Destroy(web, 3f);
+                    Destroy(web, 2f);
                 }
 
             }

@@ -14,6 +14,7 @@ public class Plant : MonoBehaviour
     public TMP_Text countdownText;  // Text to display the countdown timer
     public TMP_Text bossText;
     public TMP_Text bossHealthText;
+    public GameObject ScreenBorder;
     public static int plantsNum = 0;
     public AudioClip _audioClip;    // Clip for planting sound
     public AudioClip _audioClip2;   // Clip for completion sound
@@ -58,6 +59,10 @@ public class Plant : MonoBehaviour
         {
             bossHealthText.gameObject.SetActive(false); 
         }
+        if (ScreenBorder != null)
+        {
+            ScreenBorder.gameObject.SetActive(false); 
+        }
 
         // Find the Music GameObject and get its AudioSource
         GameObject musicObject = GameObject.Find("Music");
@@ -75,6 +80,7 @@ public class Plant : MonoBehaviour
         {
             Debug.LogWarning("Music GameObject not found in the scene.");
         }
+        
     }
 
     void Update()
@@ -167,6 +173,8 @@ public class Plant : MonoBehaviour
             {
                 Debug.Log("No spider boss");
             }
+            ScreenBorder.gameObject.SetActive(true); 
+            
         }
     }
 }
