@@ -130,7 +130,7 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player hit by boss!");
             if (healthManager != null)
             {
-                healthManager.TakeDamage(45); // Use the instance of HealthManager to take damage
+                healthManager.TakeDamage(30); // Use the instance of HealthManager to take damage
                 AudioSource.PlayClipAtPoint(_audioClip2, transform.position);
             }
             else

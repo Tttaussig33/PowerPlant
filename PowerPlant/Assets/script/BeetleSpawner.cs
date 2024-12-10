@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BeetleSpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnRate = 12f;
-    [SerializeField] private float minSpawnRate = 8f;
+    [SerializeField] private float spawnRate = 15f;
+    [SerializeField] private float minSpawnRate = 10f;
     [SerializeField] private int maxBeetles = 2; // Max number of Beetles
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private bool canSpawn = true;
