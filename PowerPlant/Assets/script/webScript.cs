@@ -15,9 +15,14 @@ public class webScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Destroy the web on collision with any object
+        // Check if the object has the tag "spider" or "beetle"
+        if (collision.gameObject.tag == "Spider" || collision.gameObject.tag == "Beetle")
+        {
+            // Do nothing if it collides with these tags
+            return;
+        }
+
+        // Destroy the web on collision with any other object
         Destroy(gameObject);
     }
-
-   
 }

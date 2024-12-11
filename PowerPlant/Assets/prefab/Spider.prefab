@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 4
+  speed: 5
   _audioClip: {fileID: 8300000, guid: 6d8aef942fb594191b1a7dcff5ffe59e, type: 3}
   animator: {fileID: 7657964525161218623}
 --- !u!50 &7094586475610523709

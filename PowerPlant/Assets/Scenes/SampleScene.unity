@@ -1323,8 +1323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd42114940034ba0a9299eb769e65b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 6
-  minSpawnRate: 1
+  spawnRate: 9
+  minSpawnRate: 3
   maxSpiders: 2
   enemyPrefabs:
   - {fileID: 743808324108515923, guid: 12739b3be2d1e4c9bb34e34cc15279ea, type: 3}
@@ -2461,8 +2461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd42114940034ba0a9299eb769e65b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 6
-  minSpawnRate: 1
+  spawnRate: 9
+  minSpawnRate: 3
   maxSpiders: 2
   enemyPrefabs:
   - {fileID: 743808324108515923, guid: 12739b3be2d1e4c9bb34e34cc15279ea, type: 3}
@@ -3962,8 +3962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd42114940034ba0a9299eb769e65b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 6
-  minSpawnRate: 1
+  spawnRate: 9
+  minSpawnRate: 3
   maxSpiders: 2
   enemyPrefabs:
   - {fileID: 743808324108515923, guid: 12739b3be2d1e4c9bb34e34cc15279ea, type: 3}
@@ -4714,8 +4714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd42114940034ba0a9299eb769e65b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 6
-  minSpawnRate: 1
+  spawnRate: 9
+  minSpawnRate: 3
   maxSpiders: 2
   enemyPrefabs:
   - {fileID: 743808324108515923, guid: 12739b3be2d1e4c9bb34e34cc15279ea, type: 3}
@@ -6194,8 +6194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0085d7739147645f7827930fe093c79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 9
-  minSpawnRate: 4
+  spawnRate: 15
+  minSpawnRate: 5
   maxBeetles: 2
   enemyPrefabs:
   - {fileID: 5445029314021274408, guid: d38160465a5c248e6be982b99f5d0055, type: 3}
@@ -7156,8 +7156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0085d7739147645f7827930fe093c79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 9
-  minSpawnRate: 4
+  spawnRate: 15
+  minSpawnRate: 5
   maxBeetles: 2
   enemyPrefabs:
   - {fileID: 5445029314021274408, guid: d38160465a5c248e6be982b99f5d0055, type: 3}
