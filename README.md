@@ -1,3 +1,6 @@
+
+<img width="942" alt="Screenshot 2024-12-21 at 11 07 55 AM" src="https://github.com/user-attachments/assets/cbb895b8-6e6c-49b8-8cfe-22e559ef8ab7" />
+
 Title: Powerplant
 
 Company: NexGen Games - Evan, Teddy, Jackson
