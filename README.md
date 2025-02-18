@@ -3,7 +3,8 @@
 
 ![](./Screenshots/title_screen.png)
 
-![](./Screenshots/gameplay.png)
+[![Gameplay Screenshot](./Screenshots/gameplay.png)](https://youtu.be/uxXzdzv7LhI)
+
 
 # Powerplant
 
@@ -35,6 +36,7 @@ Story
 
 **Link:**
 https://sites.google.com/conncoll.edu/nexgengames
+https://youtu.be/uxXzdzv7LhI
 
 
 
