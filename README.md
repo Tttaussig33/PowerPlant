@@ -34,9 +34,12 @@ Story
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The game has a retro aesthetic reminiscent of ‘80s arcade games like Super Mario Bros. It features a desolate terrain rife with broken cars, rocks and other obstacles for PHIL to navigate. As for the music, it combines classic acoustic instrumentation with pulsing synths that heighten the sense of quest.
 
 
-**Link:**
-https://sites.google.com/conncoll.edu/nexgengames
-https://youtu.be/uxXzdzv7LhI
+**Links:**
+
+* [Company Website](https://sites.google.com/conncoll.edu/nexgengames)
+
+
+* [Gameplay Video](https://youtu.be/uxXzdzv7LhI)
 
 
 
